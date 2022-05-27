@@ -70,14 +70,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newMatch() {  //A game is composed of three matches
-
-        int operand1 = random.nextInt(10);
-        int operand2=0;
-        //check is operand2 is not zero; otherwise in case of division-divide by zero error will come
         String operator = operators[random.nextInt(4)];
-        textView2.setText(operand1 + operator + operand2);
+        int operand1 = random.nextInt(10);
+        int operand2= random.nextInt(10);
+        int correctbutton= random.nextInt(4);
+        int correctanswer= -100;
+        if (operator.equals("+"))
+            correctanswer= operand1+operand2;
+        else if(operator.equals("-"))
+                correctanswer= operand1-operand2;
+        else if(operator.equals("/"))
+                correctanswer= operand1/operand2;
+        else
+            correctanswer= operand1*operand2;
+        if (correctbutton== 0);
+        {
+            button1.setText(correctanswer+"");
+            button2.setText(correctanswer+1+"");
+            button3.setText(correctanswer+2+"");
+            button4.setText(correctanswer-2+"");
+        }
+        if (correctbutton==1);
+        {
+            button1.setText(correctanswer+3+"");
+            button2.setText(correctanswer+"");
+            button3.setText(correctanswer+2+"");
+            button4.setText(correctanswer-2+"");
+        }
+        if (correctbutton==2);
+        {
+            button1.setText(correctanswer+1+"");
+            button2.setText(correctanswer+2+"");
+            button3.setText(correctanswer+"");
+            button4.setText(correctanswer-2+"");
+        }
+        if (correctbutton==3);
+        {
+            button1.setText(correctanswer+1+"");
+            button2.setText(correctanswer+2+"");
+            button3.setText(correctanswer+3+"");
+            button4.setText(correctanswer+"");
+        }
 
-      // Your code here, to diplay correct and incorrect options on the buttons
+        //check is operand2 is not zero; otherwise in case of division-divide by zero error will come
+        textView2.setText(operand1 + operator + operand2);
+        if(operator.equals("+"))
+
 
         if(matchCounter==3){    // if three matches are completed updatee the perfomrance in sharedpreferences
 
@@ -95,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
     public int sumOfScore(){
         //Computing the sum of score array, which has the 1 or in each index,depending on correct or incorrect answers
         int sum=0;
+        for(int i=0; i<score.length; i++);
+        {
+            sum=sum+score[1];
+        }
        // your code here
         return sum;
     }
@@ -113,7 +155,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getInterpretation(int [][]dataFrame,double slope){
-       //provide interpretation based on your slope analysis
+       if(slope<3)
+       {
+           System.out.println("You are doing very bad");
+       }
+       else if(slope>4)
+       {
+           System.out.println("You are doing very good");
+       }
         // Your code here
         return "Your Interpretation";
     }
